@@ -4,6 +4,9 @@ require 'rhcl'
 state = JSON.parse(File.read('terraform.tfstate'))
 
 describe state do
+  it "to have correct projectname" do
+    expect(state['modules'][0]['outputs']['projectname']['value']).to eq('acme-inc-testproject')
+  end
   it "to have correct fullname" do
   	expect(state['modules'][0]['outputs']['fullname']['value']).to eq('acme-inc-testproject-prod')
   end

@@ -6,5 +6,6 @@ locals {
       "Release Phase", "${var.release_phase}"
     )}"
   client_id = "${lower(replace(var.client, " ", "-"))}"
+  project_parts = "${compact(list(local.client_id, var.project))}"
   fullname_parts = "${compact(list(local.client_id, var.project, var.release_phase))}"
 }

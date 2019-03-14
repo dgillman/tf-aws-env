@@ -17,6 +17,10 @@ output "tags" {
   )}"
 }
 
+output "projectname" {
+  value = "${join("-", local.project_parts)}"
+}
+
 output "fullname" {
   value = "${join("-", local.fullname_parts)}"
 }
