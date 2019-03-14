@@ -5,6 +5,6 @@ locals {
       "Project", "${coalesce(var.project, "None")}",
       "Release Phase", "${var.release_phase}"
     )}"
-  client_id = "${lower(replace(var.client, " ", "_"))}"
+  client_id = "${lower(replace(var.client, " ", "-"))}"
   fullname_parts = "${compact(list(local.client_id, var.project, var.release_phase))}"
 }

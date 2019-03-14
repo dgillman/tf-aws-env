@@ -18,5 +18,5 @@ output "tags" {
 }
 
 output "fullname" {
-  value = "${join("_", local.fullname_parts)}"
+  value = "${join("-", local.fullname_parts)}"
 }
