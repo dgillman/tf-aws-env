@@ -19,6 +19,7 @@ variable | type | description
 client | string | name of the client (empty if not supplied)
 project | string | name of the project (empty if not supplied)
 release_phase | string | name of the release phase (empty if not supplied)
+projectname | string | just the client and project parts (ie. the name of project across environments)
 fullname | string | full name for environment comprised of the previous three variables separated by `_` (eg. `dev`, `acmecorp_webproject_stage`)
 tags | map | tags to apply to all AWS resources. Includes client, project, release phase, environment (fullname), and any values supplied in `additional_tags`
 
@@ -31,3 +32,29 @@ project | string | | no | Project this environment supports
 client | string | | no | Client this environment supports
 release_phase | string | | "dev" | Phase in the release lifecycle (eg. 'dev', 'qa', 'stage', 'prod')
 additional_tags | map | | no | Additional Tags that should be appended to all assets in this environment
+
+## Testing
+1. Ensure Ruby (>=2.3.1) and bundler are installed
+
+2. Install ruby dependencies
+```
+bundle install
+```
+
+3. Build test resources
+```
+cd test/test-env
+terraform init
+terraform apply
+```
+
+4. Run tests (from same directory as above)
+```
+bundle exec rspec
+```
+
+## Known Issues
+- use of terraform-kitchen would be preferable, but this project (so far) creates no remote resources, so does not fit well with terraform-kitchen's assumption that testing will be run on remote resources
+
+## To Do
+- automate testing with CircleCI, or at least locally with `make`
